@@ -78,7 +78,7 @@
 
     <target name="usr" depends="folders">
         <mkdir dir="${package}/usr/bin"/>
-        <copy todir="${package}/usr/bin" haltonerror="off">
+        <copy todir="${package}/usr/bin" haltonerror="false">
             <fileset dir="usr/bin">
                 <include name="*/**"/>
             </fileset>
