@@ -85,7 +85,7 @@
         </copy>
     </target>
 
-    <target name="package" depends="control, etc, source, version, docs">
+    <target name="make" depends="control, etc, source, version, docs">
         <exec command="fakeroot dpkg --build '${package}' ${distribution}/ " logoutput="true"/>
         <delete dir="${package}" includeemptydirs="true" failonerror="true" />
     </target>
