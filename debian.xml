@@ -21,7 +21,7 @@
     <target name="control">
         <mkdir dir="${package}/DEBIAN"/>
         <copy todir="${package}/DEBIAN">
-            <fileset dir="build/debian/">
+            <fileset dir="debian/">
                 <include name="*/**"/>
             </fileset>
         </copy>
