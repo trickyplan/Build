@@ -13,7 +13,7 @@
 
     <!-- Build directories -->
     <property name="distribution" value="distribution"/>
-
+    <property name="key" value="" />
     <property name="destination-etc" value="etc"/>
     <property name="destination-source" value="var/www" />
     <property name="destination-documents" value="usr/share/doc"/>
@@ -21,7 +21,7 @@
     <target name="control">
         <mkdir dir="${package}/DEBIAN"/>
         <copy todir="${package}/DEBIAN">
-            <fileset dir="build/debian/">
+            <fileset dir="debian">
                 <include name="*/**"/>
             </fileset>
         </copy>
@@ -38,8 +38,8 @@
     </target>
 
     <target name="source">
-        <mkdir dir="${package}/${destination-source}/${phing.project.name}"/>
-        <copy todir="${package}/${destination-source}/${phing.project.name}">
+        <mkdir dir="${package}/${destination-source}"/>
+        <copy todir="${package}/${destination-source}">
             <fileset dir="${source-code}">
                 <include name="*/**"/>
             </fileset>
@@ -47,7 +47,7 @@
     </target>
 
     <target name="etc">
-        <mkdir dir="${package}/${destination-etc}/${phing.project.name}"/>
+        <mkdir dir="${package}/${destination-etc}"/>
         <copy todir="${package}/${destination-etc}/">
             <fileset dir="${source-etc}">
                 <include name="*/**"/>
@@ -65,7 +65,7 @@
     </target>
 
     <target name="version">
-        <echo file="${package}/${destination-source}/${phing.project.name}/Options/Version.json" append="false">
+        <echo file="${package}/${destination-source}/Options/Version.json" append="false">
 {
     "Project":
     {
@@ -86,7 +86,7 @@
     </target>
 
     <target name="make" depends="control, etc, source, usr, version, docs">
-        <exec command="dpkg --build '${package}' ${distribution}/ " logoutput="true"/>
+        <exec command="fakeroot dpkg --build '${package}' ${distribution}/ " logoutput="true"/>
         <delete dir="${package}" includeemptydirs="true" failonerror="true" />
     </target>
 </project>
