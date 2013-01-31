@@ -15,7 +15,6 @@
     <property name="distribution" value="distribution"/>
     <property name="key" value="" />
     <property name="destination-etc" value="etc"/>
-    <property name="destination-source" value="var/www" />
     <property name="destination-documents" value="usr/share/doc"/>
 
     <target name="control">
